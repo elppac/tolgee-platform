@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 import org.springframework.web.multipart.MaxUploadSizeExceededException
 import org.springframework.web.multipart.support.MissingServletRequestPartException
+import org.springframework.web.servlet.resource.NoResourceFoundException
 import java.io.Serializable
 import java.util.*
 import java.util.function.Consumer
@@ -239,6 +240,15 @@ class ExceptionHandlers {
     return ResponseEntity(
       RateLimitResponseBody(Message.RATE_LIMITED, ex.retryAfter, ex.global),
       HttpStatus.TOO_MANY_REQUESTS,
+    )
+  }
+
+  @ExceptionHandler(NoResourceFoundException::class)
+  fun handleNoResourceFound(ex: NoResourceFoundException): ResponseEntity<ErrorResponseBody> {
+    logger.debug("No resource found", ex)
+    return ResponseEntity(
+      ErrorResponseBody(Message.RESOURCE_NOT_FOUND.code, listOf(ex.resourcePath)),
+      HttpStatus.NOT_FOUND,
     )
   }
 

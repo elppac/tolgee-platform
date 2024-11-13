@@ -4,6 +4,7 @@ import io.tolgee.model.dataImport.Import
 import io.tolgee.model.dataImport.ImportLanguage
 import io.tolgee.model.dataImport.ImportTranslation
 import io.tolgee.model.views.ImportTranslationView
+import org.springframework.context.annotation.Lazy
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
 @Repository
+@Lazy
 interface ImportTranslationRepository : JpaRepository<ImportTranslation, Long> {
   @Query(
     """
@@ -52,8 +54,10 @@ interface ImportTranslationRepository : JpaRepository<ImportTranslation, Long> {
         where (itc.id is not null or :onlyConflicts = false)
         and ((itc.id is not null and it.resolvedHash is null) or :onlyUnresolved = false)
         and it.language.id = :languageId
+        and (ik.shouldBeImported)
         and (:search is null or lower(it.text) like lower(concat('%', cast(:search as text), '%'))
         or lower(ik.name) like lower(concat('%', cast(:search as text), '%')))
+
     """,
   )
   fun findImportTranslationsView(

@@ -48,6 +48,9 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    applyMavenExclusions = false
+}
 
 allOpen {
     annotation("jakarta.persistence.Entity")
@@ -62,7 +65,7 @@ allOpen {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 dependencies {
@@ -202,7 +205,8 @@ test {
     setTestRetry(it)
 }
 
-task runContextRecreatingTests(type: Test, group: 'verification') {
+tasks.register('runContextRecreatingTests', Test) {
+    outputs.upToDateWhen { false }
     useJUnitPlatform {
         includeTags "contextRecreating"
     }
@@ -210,7 +214,8 @@ task runContextRecreatingTests(type: Test, group: 'verification') {
     setTestRetry(it)
 }
 
-task runStandardTests(type: Test, group: 'verification') {
+tasks.register('runStandardTests', Test) {
+    outputs.upToDateWhen { false }
     useJUnitPlatform {
         excludeTags "contextRecreating", "websocket"
     }
@@ -218,7 +223,8 @@ task runStandardTests(type: Test, group: 'verification') {
     setTestRetry(it)
 }
 
-task runWebsocketTests(type: Test, group: 'verification') {
+tasks.register('runWebsocketTests', Test) {
+    outputs.upToDateWhen { false }
     useJUnitPlatform {
         includeTags "websocket"
     }
@@ -270,4 +276,10 @@ jar {
 
 bootJar {
     duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+normalization {
+    runtimeClasspath {
+        ignore '**/build-info.properties'
+    }
 }

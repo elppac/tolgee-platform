@@ -2,15 +2,17 @@ package io.tolgee.model.dataImport
 
 import io.tolgee.model.StandardAuditModel
 import io.tolgee.model.key.KeyMeta
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
+import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
+import org.hibernate.annotations.ColumnDefault
 
 @Entity
+@Table(
+  indexes = [
+    Index(columnList = "file_id"),
+  ],
+)
 class ImportKey(
   @field:NotBlank
   @field:Size(max = 2000)
@@ -26,6 +28,9 @@ class ImportKey(
   override var keyMeta: KeyMeta? = null
 
   var pluralArgName: String? = null
+
+  @ColumnDefault("true")
+  var shouldBeImported: Boolean = true
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true

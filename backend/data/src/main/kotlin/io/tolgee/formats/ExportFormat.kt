@@ -34,4 +34,6 @@ enum class ExportFormat(
   PROPERTIES("properties", "text/plain"),
   YAML_RUBY("yaml", "application/x-yaml"),
   YAML("yaml", "application/x-yaml"),
+  JSON_I18NEXT("json", "application/json"),
+  CSV("csv", "text/csv"),
 }

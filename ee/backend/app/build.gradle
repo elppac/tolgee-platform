@@ -89,13 +89,21 @@ dependencies {
     implementation libs.slackApiClient
     implementation libs.slackApiModelKotlinExtension
     implementation libs.slackApiClientKotlinExtension
+
+    /**
+     * Excel file generation
+     */
+    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+    implementation 'org.apache.commons:commons-collections4:4.4'
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 dependencyManagement {
+    applyMavenExclusions = false
+
     imports {
         mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
     }

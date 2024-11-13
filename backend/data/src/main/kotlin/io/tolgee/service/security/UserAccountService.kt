@@ -9,6 +9,8 @@ import io.tolgee.dtos.cacheable.UserAccountDto
 import io.tolgee.dtos.queryResults.UserAccountView
 import io.tolgee.dtos.request.UserUpdatePasswordRequestDto
 import io.tolgee.dtos.request.UserUpdateRequestDto
+import io.tolgee.dtos.request.task.UserAccountFilters
+import io.tolgee.dtos.request.userAccount.UserAccountPermissionsFilters
 import io.tolgee.dtos.request.validators.exceptions.ValidationException
 import io.tolgee.events.OnUserCountChanged
 import io.tolgee.events.user.OnUserCreated
@@ -37,6 +39,7 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.Lazy
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -46,6 +49,7 @@ import java.util.*
 
 @Service
 class UserAccountService(
+  @Lazy
   private val userAccountRepository: UserAccountRepository,
   private val applicationEventPublisher: ApplicationEventPublisher,
   private val tolgeeProperties: TolgeeProperties,
@@ -77,10 +81,12 @@ class UserAccountService(
     return this.findActive(username) ?: throw NotFoundException(Message.USER_NOT_FOUND)
   }
 
+  @Transactional
   fun findActive(id: Long): UserAccount? {
     return userAccountRepository.findActive(id)
   }
 
+  @Transactional
   fun findInitialUser(): UserAccount? {
     return userAccountRepository.findInitialUser()
   }
@@ -342,8 +348,15 @@ class UserAccountService(
     pageable: Pageable,
     search: String?,
     exceptUserId: Long? = null,
+    filters: UserAccountFilters = UserAccountFilters(),
   ): Page<UserAccountInProjectView> {
-    return userAccountRepository.getAllInProject(projectId, pageable, search = search, exceptUserId)
+    return userAccountRepository.getAllInProject(
+      projectId,
+      pageable,
+      search = search,
+      exceptUserId,
+      filters,
+    )
   }
 
   fun getAllInProjectWithPermittedLanguages(
@@ -351,8 +364,9 @@ class UserAccountService(
     pageable: Pageable,
     search: String?,
     exceptUserId: Long? = null,
+    filters: UserAccountFilters = UserAccountFilters(),
   ): Page<ExtendedUserAccountInProject> {
-    val users = getAllInProject(projectId, pageable, search, exceptUserId)
+    val users = getAllInProject(projectId, pageable, search, exceptUserId, filters)
     val organizationBasePermission = organizationService.getProjectOwner(projectId = projectId).basePermission
 
     val permittedLanguageMap =
@@ -545,4 +559,25 @@ class UserAccountService(
   }
 
   fun findActiveView(id: Long): UserAccountView? = userAccountRepository.findActiveView(id)
+
+  fun findWithMinimalPermissions(
+    filters: UserAccountPermissionsFilters,
+    projectId: Long,
+    search: String?,
+    pageable: Pageable,
+  ): PageImpl<UserAccount> {
+    val ids =
+      userAccountRepository.findUsersWithMinimalPermissions(
+        filters.filterId ?: listOf(),
+        filters.filterMinimalScopeExtended,
+        filters.filterMinimalPermissionType,
+        projectId,
+        filters.filterViewLanguageId,
+        filters.filterEditLanguageId,
+        filters.filterStateLanguageId,
+        search,
+        pageable,
+      )
+    return PageImpl(userAccountRepository.findAllById(ids.content), pageable, ids.totalElements)
+  }
 }

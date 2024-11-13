@@ -4,11 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.tolgee.ProjectAuthControllerTest
 import io.tolgee.development.testDataBuilder.data.ResolvableImportTestData
 import io.tolgee.dtos.request.ImageUploadInfoDto
-import io.tolgee.fixtures.andAssertThatJson
-import io.tolgee.fixtures.andIsBadRequest
-import io.tolgee.fixtures.andIsForbidden
-import io.tolgee.fixtures.andIsOk
-import io.tolgee.fixtures.node
+import io.tolgee.fixtures.*
 import io.tolgee.testing.annotations.ProjectJWTAuthTestMethod
 import io.tolgee.testing.assert
 import io.tolgee.util.generateImage
@@ -19,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.io.Resource
 import kotlin.properties.Delegates
+import kotlin.time.measureTime
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,17 +34,19 @@ class KeyControllerResolvableImportTest : ProjectAuthControllerTest("/v2/project
     projectSupplier = { testData.projectBuilder.self }
     userAccount = testData.user
     uploadedImageId =
-      imageUploadService.store(
-        generateImage(),
-        userAccount!!,
-        ImageUploadInfoDto(location = "My cool frame"),
-      ).id
+      imageUploadService
+        .store(
+          generateImage(),
+          userAccount!!,
+          ImageUploadInfoDto(location = "My cool frame"),
+        ).id
     uploadedImageId2 =
-      imageUploadService.store(
-        generateImage(),
-        testData.viewOnlyUser,
-        ImageUploadInfoDto(location = "My cool frame"),
-      ).id
+      imageUploadService
+        .store(
+          generateImage(),
+          testData.viewOnlyUser,
+          ImageUploadInfoDto(location = "My cool frame"),
+        ).id
   }
 
   @Test
@@ -145,6 +144,40 @@ class KeyControllerResolvableImportTest : ProjectAuthControllerTest("/v2/project
       assertTranslationText("namespace-1", "key-1", "en", "new")
       assertTranslationText("namespace-1", "key-2", "en", "existing translation")
     }
+  }
+
+  @Test
+  @ProjectJWTAuthTestMethod
+  fun `it imports a lot of data (and set outdated) in time`() {
+    val lotOfKeys = testData.addLotOfKeys(5000)
+    testDataService.saveTestData(testData.root)
+
+    val toImport =
+      lotOfKeys.map {
+        mapOf(
+          "name" to it.name,
+          "translations" to
+            mapOf(
+              "en" to
+                mapOf(
+                  "text" to "new",
+                  "resolution" to "OVERRIDE",
+                ),
+            ),
+        )
+      }
+
+    val time =
+      measureTime {
+        performProjectAuthPost(
+          "keys/import-resolvable",
+          mapOf(
+            "keys" to toImport,
+          ),
+        ).andIsOk
+      }
+
+    time.inWholeSeconds.assert.isLessThan(10)
   }
 
   @Test
@@ -329,19 +362,69 @@ class KeyControllerResolvableImportTest : ProjectAuthControllerTest("/v2/project
     ).andIsOk
   }
 
+  @ProjectJWTAuthTestMethod
+  @Test
+  fun `option force-override works`() {
+    performProjectAuthPost(
+      "keys/import-resolvable",
+      mapOf(
+        "keys" to
+          listOf(
+            mapOf(
+              "name" to "key-1",
+              "namespace" to "namespace-1",
+              "translations" to
+                mapOf(
+                  "de" to
+                    mapOf(
+                      "text" to "new",
+                      "resolution" to "FORCE_OVERRIDE",
+                    ),
+                  "en" to
+                    mapOf(
+                      "text" to "new",
+                      "resolution" to "FORCE_OVERRIDE",
+                    ),
+                ),
+            ),
+            mapOf(
+              "name" to "key-2",
+              "namespace" to "namespace-1",
+              "translations" to
+                mapOf(
+                  "en" to
+                    mapOf(
+                      "text" to "existing translation",
+                      "resolution" to "FORCE_OVERRIDE",
+                    ),
+                ),
+            ),
+          ),
+      ),
+    ).andIsOk
+
+    executeInNewTransaction {
+      assertTranslationText("namespace-1", "key-1", "de", "new")
+      assertTranslationText("namespace-1", "key-1", "en", "new")
+      assertTranslationText("namespace-1", "key-2", "en", "existing translation")
+    }
+  }
+
   fun assertTranslationText(
     namespace: String?,
     keyName: String,
     languageTag: String,
     expectedText: String,
   ) {
-    projectService.get(testData.projectBuilder.self.id)
+    projectService
+      .get(testData.projectBuilder.self.id)
       .keys
       .find { it.name == keyName && it.namespace?.name == namespace }!!
       .translations
       .find { it.language.tag == languageTag }!!
       .text
-      .assert.isEqualTo(
+      .assert
+      .isEqualTo(
         expectedText,
       )
   }

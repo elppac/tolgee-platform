@@ -139,6 +139,7 @@ export interface components {
         | "third_party_auth_no_email"
         | "third_party_auth_no_sub"
         | "third_party_auth_unknown_error"
+        | "email_already_verified"
         | "third_party_unauthorized"
         | "third_party_google_workspace_mismatch"
         | "username_already_exists"
@@ -338,7 +339,15 @@ export interface components {
         | "tolgee_account_already_connected"
         | "slack_not_configured"
         | "slack_workspace_already_connected"
-        | "slack_connection_error";
+        | "slack_connection_error"
+        | "email_verification_code_not_valid"
+        | "cannot_subscribe_to_free_plan"
+        | "plan_auto_assignment_only_for_free_plans"
+        | "plan_auto_assignment_only_for_private_plans"
+        | "plan_auto_assignment_organization_ids_not_in_for_organization_ids"
+        | "task_not_found"
+        | "task_not_finished"
+        | "task_not_open";
       params?: { [key: string]: unknown }[];
     };
     ErrorResponseBody: {
@@ -391,6 +400,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       prices: components["schemas"]["PlanPricesModel"];
       includedUsage: components["schemas"]["PlanIncludedUsageModel"];
@@ -439,6 +449,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       type: "PAY_AS_YOU_GO" | "FIXED" | "SLOTS_FIXED";
       prices: components["schemas"]["PlanPricesModel"];
@@ -515,6 +526,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       prices: components["schemas"]["PlanPricesRequest"];
       includedUsage: components["schemas"]["PlanIncludedUsageRequest"];
@@ -550,6 +562,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       prices: components["schemas"]["PlanPricesModel"];
       includedUsage: components["schemas"]["PlanIncludedUsageModel"];
@@ -577,6 +590,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       type: "PAY_AS_YOU_GO" | "FIXED" | "SLOTS_FIXED";
       prices: components["schemas"]["PlanPricesRequest"];
@@ -590,7 +604,7 @@ export interface components {
       /** Format: date-time */
       usableUntil?: string;
       forOrganizationIds: number[];
-      autoAssign: boolean;
+      autoAssignOrganizationIds: number[];
     };
     CloudPlanAdministrationModel: {
       /** Format: int64 */
@@ -613,6 +627,7 @@ export interface components {
         | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
         | "AI_PROMPT_CUSTOMIZATION"
         | "SLACK_INTEGRATION"
+        | "TASKS"
       )[];
       type: "PAY_AS_YOU_GO" | "FIXED" | "SLOTS_FIXED";
       prices: components["schemas"]["PlanPricesModel"];
@@ -807,6 +822,8 @@ export interface components {
         | "content-delivery.manage"
         | "content-delivery.publish"
         | "webhooks.manage"
+        | "tasks.view"
+        | "tasks.edit"
       )[];
       /** @description The user's permission type. This field is null if uses granular permissions */
       type?: "NONE" | "VIEW" | "TRANSLATE" | "REVIEW" | "EDIT" | "MANAGE";
@@ -2545,6 +2562,7 @@ export interface operations {
             | "MULTIPLE_CONTENT_DELIVERY_CONFIGS"
             | "AI_PROMPT_CUSTOMIZATION"
             | "SLACK_INTEGRATION"
+            | "TASKS"
           )[];
         };
       };

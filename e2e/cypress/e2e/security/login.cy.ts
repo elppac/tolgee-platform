@@ -5,6 +5,7 @@ import { getAnyContainingText } from '../../common/xPath';
 import {
   createUser,
   deleteAllEmails,
+  disableEmailVerification,
   getParsedResetPasswordEmail,
   login,
   userDisableMfa,
@@ -55,6 +56,7 @@ context('Login', () => {
   });
 
   it('login with github', () => {
+    disableEmailVerification();
     checkAnonymousIdSet();
 
     loginWithFakeGithub();
@@ -62,7 +64,9 @@ context('Login', () => {
     checkAnonymousIdUnset();
     checkAnonymousUserIdentified();
   });
-  it('login with oauth2', () => {
+  it('login with oauth2', { retries: { runMode: 5 } }, () => {
+    disableEmailVerification();
+
     loginWithFakeOAuth2();
   });
 

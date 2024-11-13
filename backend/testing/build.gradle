@@ -47,7 +47,7 @@ repositories {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 idea {
@@ -118,6 +118,17 @@ dependencies {
      */
     implementation(project(':misc'))
     implementation 'org.postgresql:postgresql'
+
+    /**
+     * Google translation API
+     */
+    implementation platform(libs.googleCloud)
+    implementation 'com.google.cloud:google-cloud-translate'
+
+    /**
+     * Aws translate
+     */
+    implementation libs.amazonTranslate
 }
 
 test {
@@ -131,6 +142,8 @@ sourceSets {
 }
 
 dependencyManagement {
+    applyMavenExclusions = false
+
     imports {
         mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
     }

@@ -52,6 +52,8 @@ export const exportToggleLanguage = (lang: string) => {
 export function assertExportLanguagesSelected(languages: string[]) {
   cy.gcy('export-language-selector').click();
 
+  cy.gcy('export-language-selector-item').should('be.visible');
+
   languages.forEach((language) => {
     cy.gcy('export-language-selector-item')
       .contains(language)
@@ -207,6 +209,31 @@ export const testExportFormats = (
       format: 'YAML_RUBY',
     },
   });
+
+  testFormat(interceptFn, submitFn, clearCheckboxesAfter, afterFn, {
+    format: 'Flat i18next .json',
+    expectedParams: {
+      format: 'JSON_I18NEXT',
+    },
+  });
+
+  testFormat(interceptFn, submitFn, clearCheckboxesAfter, afterFn, {
+    format: 'Structured i18next .json',
+    expectedParams: {
+      format: 'JSON_I18NEXT',
+      structureDelimiter: '.',
+    },
+  });
+
+  testFormatWithMessageFormats(
+    ['ICU', 'PHP Sprintf', 'C Sprintf', 'Ruby Sprintf', 'Java String.format'],
+    {
+      format: 'CSV',
+      expectedParams: {
+        format: 'CSV',
+      },
+    }
+  );
 };
 
 const testFormat = (

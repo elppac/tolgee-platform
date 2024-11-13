@@ -240,7 +240,7 @@ class ImportDataManager(
 
   fun resetCollisionsBetweenFiles(
     editedLanguage: ImportLanguage,
-    oldExistingLanguage: Language?,
+    oldExistingLanguage: Language? = null,
   ) {
     val affectedLanguages =
       storedLanguages.filter {
@@ -318,7 +318,7 @@ class ImportDataManager(
       )
 
     storedTranslations.firstOrNull {
-      it.isSelectedToImport && it.text != newTranslation.text
+      it.isSelectedToImport
     }?.let { collision ->
       val handled = tryHandleUsingCollisionHandlers(listOf(newTranslation) + storedTranslations)
       if (handled) {
@@ -370,6 +370,27 @@ class ImportDataManager(
   ) {
     if (oldSettings.convertPlaceholdersToIcu != newSettings.convertPlaceholdersToIcu) {
       applyConvertPlaceholdersChange(newSettings.convertPlaceholdersToIcu)
+    }
+
+    if (oldSettings.createNewKeys != newSettings.createNewKeys) {
+      applyKeyCreateChange(newSettings.createNewKeys)
+    }
+  }
+
+  fun applyKeyCreateChange(createNewKeys: Boolean) {
+    storedKeys.forEach { (_, key) ->
+      if (createNewKeys) {
+        key.shouldBeImported = true
+      } else {
+        key.shouldBeImported = keyService.find(
+          import.project.id,
+          key.name,
+          getSafeNamespace(key.file.namespace),
+        ) != null
+      }
+      if (saveData) {
+        importService.saveKey(key)
+      }
     }
   }
 

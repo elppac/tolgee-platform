@@ -1,3 +1,324 @@
+## [3.81.2](https://github.com/tolgee/tolgee-platform/compare/v3.81.1...v3.81.2) (2024-11-12)
+
+
+### Bug Fixes
+
+* remove redundant isContentDeliveryEnabled function from PublicConfigurationDTO ([#2689](https://github.com/tolgee/tolgee-platform/issues/2689)) ([6ddba66](https://github.com/tolgee/tolgee-platform/commit/6ddba66d06bcf6ee58554abef07e15fa8e88334b))
+
+## [3.81.1](https://github.com/tolgee/tolgee-platform/compare/v3.81.0...v3.81.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* Content delivery configured check & docs ([#2481](https://github.com/tolgee/tolgee-platform/issues/2481)) ([5a94758](https://github.com/tolgee/tolgee-platform/commit/5a947586b74783c497bc80438d6fffa686fb1b2a))
+
+# [3.81.0](https://github.com/tolgee/tolgee-platform/compare/v3.80.6...v3.81.0) (2024-11-05)
+
+
+### Features
+
+* Add endpoint returning all project keys with disabled languages ([#2666](https://github.com/tolgee/tolgee-platform/issues/2666)) ([d48333f](https://github.com/tolgee/tolgee-platform/commit/d48333f46d203021021c6f51cd5d84a3286854e1))
+
+## [3.80.6](https://github.com/tolgee/tolgee-platform/compare/v3.80.5...v3.80.6) (2024-10-30)
+
+
+### Bug Fixes
+
+* task possible assignees ([#2644](https://github.com/tolgee/tolgee-platform/issues/2644)) ([89b0000](https://github.com/tolgee/tolgee-platform/commit/89b00009b83128d4ea4edb39d6cee57e88fd8654))
+
+## [3.80.5](https://github.com/tolgee/tolgee-platform/compare/v3.80.4...v3.80.5) (2024-10-29)
+
+
+### Bug Fixes
+
+* Avoid requesting super auth when authentication is disabled ([#2630](https://github.com/tolgee/tolgee-platform/issues/2630)) ([3f7919a](https://github.com/tolgee/tolgee-platform/commit/3f7919ad89b69801370344439e6d1009c57c21b7))
+* Respect project.icuPlaceholders in singleStepImport ([#2629](https://github.com/tolgee/tolgee-platform/issues/2629)) ([5e2b72a](https://github.com/tolgee/tolgee-platform/commit/5e2b72ac5bd07a878b9eedc0989277e66d5e0244)), closes [#2574](https://github.com/tolgee/tolgee-platform/issues/2574)
+
+## [3.80.4](https://github.com/tolgee/tolgee-platform/compare/v3.80.3...v3.80.4) (2024-10-24)
+
+
+### Bug Fixes
+
+* use less grid (safari performance) ([#2618](https://github.com/tolgee/tolgee-platform/issues/2618)) ([eb35e76](https://github.com/tolgee/tolgee-platform/commit/eb35e766a6d9bec390164ea1c12b2946f120165b))
+
+## [3.80.3](https://github.com/tolgee/tolgee-platform/compare/v3.80.2...v3.80.3) (2024-10-22)
+
+
+### Bug Fixes
+
+* add missing indexes for FKs (second part) ([#2613](https://github.com/tolgee/tolgee-platform/issues/2613)) ([1158f79](https://github.com/tolgee/tolgee-platform/commit/1158f79f78d4ad1acd25c04c2431ca0d071c54ff))
+
+## [3.80.2](https://github.com/tolgee/tolgee-platform/compare/v3.80.1...v3.80.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* Import -> Collisions between files handling ([#2612](https://github.com/tolgee/tolgee-platform/issues/2612)) ([8f085a6](https://github.com/tolgee/tolgee-platform/commit/8f085a67ccd96ce7ec6657490dfa2580118dac9b))
+
+## [3.80.1](https://github.com/tolgee/tolgee-platform/compare/v3.80.0...v3.80.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* avoid sub-queries when searching for data to be deleted ([#2606](https://github.com/tolgee/tolgee-platform/issues/2606)) ([c1eaf91](https://github.com/tolgee/tolgee-platform/commit/c1eaf91b6bbbfb342dec01448612858c72868ec9))
+
+# [3.80.0](https://github.com/tolgee/tolgee-platform/compare/v3.79.2...v3.80.0) (2024-10-18)
+
+
+### Bug Fixes
+
+* incorrect hint icon size ([#2601](https://github.com/tolgee/tolgee-platform/issues/2601)) ([8bf8bd6](https://github.com/tolgee/tolgee-platform/commit/8bf8bd62ed4ab788874c756392ea4b8df8db7011))
+
+
+### Features
+
+* import resolvable force override ([#2599](https://github.com/tolgee/tolgee-platform/issues/2599)) ([6f402d6](https://github.com/tolgee/tolgee-platform/commit/6f402d63a50b37b9fe39e5d8ce15527a21536e3e))
+
+## [3.79.2](https://github.com/tolgee/tolgee-platform/compare/v3.79.1...v3.79.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* add missing indexes for FKs (first part) ([#2600](https://github.com/tolgee/tolgee-platform/issues/2600)) ([a49331e](https://github.com/tolgee/tolgee-platform/commit/a49331e70b71c1eb16557f7c53ae73e1a892ff0f))
+
+## [3.79.1](https://github.com/tolgee/tolgee-platform/compare/v3.79.0...v3.79.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* Add Arabic support for DeepL ([#2593](https://github.com/tolgee/tolgee-platform/issues/2593)) ([01d58d1](https://github.com/tolgee/tolgee-platform/commit/01d58d14563ba8a96133947975be0328973b1feb))
+
+# [3.79.0](https://github.com/tolgee/tolgee-platform/compare/v3.78.4...v3.79.0) (2024-10-14)
+
+
+### Bug Fixes
+
+* Update redisson to 3.27.0 ([#2592](https://github.com/tolgee/tolgee-platform/issues/2592)) ([24773bf](https://github.com/tolgee/tolgee-platform/commit/24773bf47f14699a4360bf3032295c47ccd7d5c5))
+
+
+### Features
+
+* export and import comments as description for Android XML ([#2560](https://github.com/tolgee/tolgee-platform/issues/2560)) ([a4cb047](https://github.com/tolgee/tolgee-platform/commit/a4cb04798aee483656b8cff685d81adfa89f5f20)), closes [#2472](https://github.com/tolgee/tolgee-platform/issues/2472) [#2391](https://github.com/tolgee/tolgee-platform/issues/2391) [#2464](https://github.com/tolgee/tolgee-platform/issues/2464)
+
+## [3.78.4](https://github.com/tolgee/tolgee-platform/compare/v3.78.3...v3.78.4) (2024-10-14)
+
+
+### Bug Fixes
+
+* Ignore sort for key search or it throws 500 ([#2583](https://github.com/tolgee/tolgee-platform/issues/2583)) ([3119354](https://github.com/tolgee/tolgee-platform/commit/3119354f01e4f2016ca0aa13ff5d74e1fb02a6d2))
+
+## [3.78.3](https://github.com/tolgee/tolgee-platform/compare/v3.78.2...v3.78.3) (2024-10-11)
+
+
+### Bug Fixes
+
+* disable test report for pull requests from external repositories ([#2552](https://github.com/tolgee/tolgee-platform/issues/2552)) ([5ed52e0](https://github.com/tolgee/tolgee-platform/commit/5ed52e0c5d6fdbb978433cea66c89feaf01ebef4)), closes [#2466](https://github.com/tolgee/tolgee-platform/issues/2466)
+* only show api keys from non-deleted projects ([#2578](https://github.com/tolgee/tolgee-platform/issues/2578)) ([ae0cfa5](https://github.com/tolgee/tolgee-platform/commit/ae0cfa52dbad19cbd3401869c4b44b7cadcb366e)), closes [#2571](https://github.com/tolgee/tolgee-platform/issues/2571)
+
+## [3.78.2](https://github.com/tolgee/tolgee-platform/compare/v3.78.1...v3.78.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* index of export entries ([#2558](https://github.com/tolgee/tolgee-platform/issues/2558)) ([017a594](https://github.com/tolgee/tolgee-platform/commit/017a594b141504f3dad9b33d5ceda8cd2d4013b6))
+* revert activity diffs as functions not components ([8bed91a](https://github.com/tolgee/tolgee-platform/commit/8bed91aab24ef3a421c143d1003292c1fd429fb1))
+
+## [3.78.1](https://github.com/tolgee/tolgee-platform/compare/v3.78.0...v3.78.1) (2024-10-10)
+
+
+### Bug Fixes
+
+* task preview key count ([#2556](https://github.com/tolgee/tolgee-platform/issues/2556)) ([720f191](https://github.com/tolgee/tolgee-platform/commit/720f19120ae34af3d389c1fe5955aedb6ff35ce3))
+
+# [3.78.0](https://github.com/tolgee/tolgee-platform/compare/v3.77.0...v3.78.0) (2024-10-09)
+
+
+### Features
+
+* allow import and export CSV ([#2475](https://github.com/tolgee/tolgee-platform/issues/2475)) ([f1782c9](https://github.com/tolgee/tolgee-platform/commit/f1782c914a70d5df39e144ce41fcdcd7b750bc9a)), closes [#2444](https://github.com/tolgee/tolgee-platform/issues/2444)
+
+# [3.77.0](https://github.com/tolgee/tolgee-platform/compare/v3.76.0...v3.77.0) (2024-10-09)
+
+
+### Features
+
+* tasks feature + new icons ([#2401](https://github.com/tolgee/tolgee-platform/issues/2401)) ([3976471](https://github.com/tolgee/tolgee-platform/commit/3976471820a04bc407efb7cb2e16b7b10d9ca4ca))
+
+# [3.76.0](https://github.com/tolgee/tolgee-platform/compare/v3.75.1...v3.76.0) (2024-10-09)
+
+
+### Features
+
+* Add Plausible to the app ([#2550](https://github.com/tolgee/tolgee-platform/issues/2550)) ([23f9348](https://github.com/tolgee/tolgee-platform/commit/23f93481f6c701f9d541203aa4b15017cdf034c3))
+
+## [3.75.1](https://github.com/tolgee/tolgee-platform/compare/v3.75.0...v3.75.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* **Readme:** update broken link for Hacktobefest2024.md file in READM… ([#2512](https://github.com/tolgee/tolgee-platform/issues/2512)) ([820a558](https://github.com/tolgee/tolgee-platform/commit/820a5585b7b6c278a1c34e40ba9b9b0fb16d97fb))
+* xml export idempotence ([#2502](https://github.com/tolgee/tolgee-platform/issues/2502)) ([b6cecb4](https://github.com/tolgee/tolgee-platform/commit/b6cecb433a577eedf92e599bae2144d04adbc5fe)), closes [#2474](https://github.com/tolgee/tolgee-platform/issues/2474)
+
+# [3.75.0](https://github.com/tolgee/tolgee-platform/compare/v3.74.5...v3.75.0) (2024-10-01)
+
+
+### Features
+
+* import and export support for i18next ([#2463](https://github.com/tolgee/tolgee-platform/issues/2463)) ([8c36fbf](https://github.com/tolgee/tolgee-platform/commit/8c36fbf285cc8484cd2c0f3f7f54e4136ff15f79))
+
+## [3.74.5](https://github.com/tolgee/tolgee-platform/compare/v3.74.4...v3.74.5) (2024-10-01)
+
+
+### Bug Fixes
+
+* activity label zero keys ([#2433](https://github.com/tolgee/tolgee-platform/issues/2433)) ([0be81c6](https://github.com/tolgee/tolgee-platform/commit/0be81c67bf44e85aca3dd72a0af1ec857700df06))
+
+## [3.74.4](https://github.com/tolgee/tolgee-platform/compare/v3.74.3...v3.74.4) (2024-09-27)
+
+
+### Bug Fixes
+
+* Fix message format conversions ([#2490](https://github.com/tolgee/tolgee-platform/issues/2490)) ([5ce2459](https://github.com/tolgee/tolgee-platform/commit/5ce2459ee1f520b99ae1f6c2f0c356e91c8a898a))
+
+## [3.74.3](https://github.com/tolgee/tolgee-platform/compare/v3.74.2...v3.74.3) (2024-09-25)
+
+
+### Bug Fixes
+
+* Update vulnerable dependencies ([#2486](https://github.com/tolgee/tolgee-platform/issues/2486)) ([8b85593](https://github.com/tolgee/tolgee-platform/commit/8b85593cdb122096ce427a7035d1a75fc301a4f7))
+
+## [3.74.2](https://github.com/tolgee/tolgee-platform/compare/v3.74.1...v3.74.2) (2024-09-24)
+
+
+### Bug Fixes
+
+* Resolvable import timing out ([#2484](https://github.com/tolgee/tolgee-platform/issues/2484)) ([a4e5c05](https://github.com/tolgee/tolgee-platform/commit/a4e5c05436be32f64ef08462fc5a9199d1c9523e))
+
+## [3.74.1](https://github.com/tolgee/tolgee-platform/compare/v3.74.0...v3.74.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* No static resource found error handling ([#2479](https://github.com/tolgee/tolgee-platform/issues/2479)) ([cadcfa4](https://github.com/tolgee/tolgee-platform/commit/cadcfa442c687dcc49b4e3dddb0030fdfde1cfef))
+* Set outdated flag in resolvable import ([#2442](https://github.com/tolgee/tolgee-platform/issues/2442)) ([d6971d2](https://github.com/tolgee/tolgee-platform/commit/d6971d2c52a4ed532ac747035549c3f218b7b365))
+
+# [3.74.0](https://github.com/tolgee/tolgee-platform/compare/v3.73.1...v3.74.0) (2024-09-23)
+
+
+### Features
+
+* Bunny.net cache purging, Origins specification for Cloudflare ([#2471](https://github.com/tolgee/tolgee-platform/issues/2471)) ([ac048ac](https://github.com/tolgee/tolgee-platform/commit/ac048ac6c85239009a506b12beebf2a46956d66d))
+
+## [3.73.1](https://github.com/tolgee/tolgee-platform/compare/v3.73.0...v3.73.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* Add metrics for big meta storing ([#2476](https://github.com/tolgee/tolgee-platform/issues/2476)) ([bbb2feb](https://github.com/tolgee/tolgee-platform/commit/bbb2feb45fda97a49a2bfc2add11ccdcba5c68bb))
+
+# [3.73.0](https://github.com/tolgee/tolgee-platform/compare/v3.72.0...v3.73.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* posthog record only when user is logged in ([#2470](https://github.com/tolgee/tolgee-platform/issues/2470)) ([e3e35cf](https://github.com/tolgee/tolgee-platform/commit/e3e35cfe1a5a39718eac79684b7818acc40fb902))
+
+
+### Features
+
+* more common json formatting ([#2432](https://github.com/tolgee/tolgee-platform/issues/2432)) ([bef8218](https://github.com/tolgee/tolgee-platform/commit/bef82184e52c6c0d7c5b243e1f2156f69a839184))
+
+# [3.72.0](https://github.com/tolgee/tolgee-platform/compare/v3.71.7...v3.72.0) (2024-09-12)
+
+
+### Features
+
+* Enable Cloudflare cache purging ([#2461](https://github.com/tolgee/tolgee-platform/issues/2461)) ([bcb7ec8](https://github.com/tolgee/tolgee-platform/commit/bcb7ec845dd8ece0bbae214944ea2bcbdf640d79))
+
+## [3.71.7](https://github.com/tolgee/tolgee-platform/compare/v3.71.6...v3.71.7) (2024-09-12)
+
+
+### Bug Fixes
+
+* Billing fixes ([#2460](https://github.com/tolgee/tolgee-platform/issues/2460)) ([2086657](https://github.com/tolgee/tolgee-platform/commit/2086657ca36fbce93e69aa21dbb0b118226abd96))
+
+## [3.71.6](https://github.com/tolgee/tolgee-platform/compare/v3.71.5...v3.71.6) (2024-09-11)
+
+
+### Performance Improvements
+
+* Translation Memory and Tolgee AI Translator suggestion performance ([#2459](https://github.com/tolgee/tolgee-platform/issues/2459)) ([fee2751](https://github.com/tolgee/tolgee-platform/commit/fee2751c6c8eadef6ba650749ed37abb5c4b4242))
+
+## [3.71.5](https://github.com/tolgee/tolgee-platform/compare/v3.71.4...v3.71.5) (2024-09-10)
+
+
+### Performance Improvements
+
+* Update Spring & Faster Startup and time to test ([#2457](https://github.com/tolgee/tolgee-platform/issues/2457)) ([a8fb3ee](https://github.com/tolgee/tolgee-platform/commit/a8fb3ee0bf53fd6b1cb1a68b5147990cdca7ce9d))
+
+## [3.71.4](https://github.com/tolgee/tolgee-platform/compare/v3.71.3...v3.71.4) (2024-09-04)
+
+
+### Bug Fixes
+
+* Exact plural forms for basic MT translators ([#2454](https://github.com/tolgee/tolgee-platform/issues/2454)) ([12b3fd6](https://github.com/tolgee/tolgee-platform/commit/12b3fd62cc48a0bd7b15b3ef06fe85e637505645))
+
+## [3.71.3](https://github.com/tolgee/tolgee-platform/compare/v3.71.2...v3.71.3) (2024-09-02)
+
+
+### Bug Fixes
+
+* Auto translation triggering on Single Step Import ([#2447](https://github.com/tolgee/tolgee-platform/issues/2447)) ([032007b](https://github.com/tolgee/tolgee-platform/commit/032007b407bb64ecfda16b69ea939ee1a49ab7af))
+
+## [3.71.2](https://github.com/tolgee/tolgee-platform/compare/v3.71.1...v3.71.2) (2024-08-22)
+
+
+### Bug Fixes
+
+* Import > Constraint violation when empty code reference ([#2440](https://github.com/tolgee/tolgee-platform/issues/2440)) ([f949d73](https://github.com/tolgee/tolgee-platform/commit/f949d7336aaa80e5276ef6a0e10b4979dde60092))
+
+## [3.71.1](https://github.com/tolgee/tolgee-platform/compare/v3.71.0...v3.71.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* slack > auto translate event ([#2431](https://github.com/tolgee/tolgee-platform/issues/2431)) ([d6f8b30](https://github.com/tolgee/tolgee-platform/commit/d6f8b307b6c92bcdcc27df17a142e604962ac3bb))
+
+# [3.71.0](https://github.com/tolgee/tolgee-platform/compare/v3.70.8...v3.71.0) (2024-08-06)
+
+
+### Features
+
+* Ability to only update translations and not add new keys in import ([#2413](https://github.com/tolgee/tolgee-platform/issues/2413)) ([1f7ed02](https://github.com/tolgee/tolgee-platform/commit/1f7ed0229a1d922312278555b78e9afc59414f90))
+
+## [3.70.8](https://github.com/tolgee/tolgee-platform/compare/v3.70.7...v3.70.8) (2024-08-03)
+
+
+### Bug Fixes
+
+* Lazy loading error when loading initial user ([#2429](https://github.com/tolgee/tolgee-platform/issues/2429)) ([b111e5e](https://github.com/tolgee/tolgee-platform/commit/b111e5e4e0ca5268971f576cb2ba3720978b57bb))
+
+## [3.70.7](https://github.com/tolgee/tolgee-platform/compare/v3.70.6...v3.70.7) (2024-08-02)
+
+
+### Bug Fixes
+
+* email resend sign up view fix ([#2421](https://github.com/tolgee/tolgee-platform/issues/2421)) ([c1d79f8](https://github.com/tolgee/tolgee-platform/commit/c1d79f88796c9de20419d2db4e5419092b97391c))
+
+## [3.70.6](https://github.com/tolgee/tolgee-platform/compare/v3.70.5...v3.70.6) (2024-07-30)
+
+
+### Bug Fixes
+
+* snake case language template placeholder ([#2423](https://github.com/tolgee/tolgee-platform/issues/2423)) ([98d1904](https://github.com/tolgee/tolgee-platform/commit/98d1904d71bd646edb7af165fe668da833b057c3))
+
+## [3.70.5](https://github.com/tolgee/tolgee-platform/compare/v3.70.4...v3.70.5) (2024-07-30)
+
+
+### Bug Fixes
+
+* Soft delete language issues ([#2424](https://github.com/tolgee/tolgee-platform/issues/2424)) ([2d55a2a](https://github.com/tolgee/tolgee-platform/commit/2d55a2a7281233f0deec3323d176a94480096c84))
+
 ## [3.70.4](https://github.com/tolgee/tolgee-platform/compare/v3.70.3...v3.70.4) (2024-07-24)
 
 

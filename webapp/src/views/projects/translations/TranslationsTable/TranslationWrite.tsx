@@ -56,6 +56,8 @@ export const TranslationWrite: React.FC<Props> = ({ tools }) => {
     handleInsertBase,
     editEnabled,
     disabled,
+    baseText,
+    setAssignedTaskState,
   } = tools;
   const editVal = tools.editVal!;
   const state = translation?.state || 'UNTRANSLATED';
@@ -68,7 +70,7 @@ export const TranslationWrite: React.FC<Props> = ({ tools }) => {
 
   const baseTranslation = useBaseTranslation(
     activeVariant,
-    keyData.translations[baseLanguage]?.text,
+    baseText,
     keyData.keyIsPlural
   );
 
@@ -142,11 +144,16 @@ export const TranslationWrite: React.FC<Props> = ({ tools }) => {
             onInsertBase={editEnabled ? handleInsertBase : undefined}
             onStateChange={setState}
             onModeToggle={editEnabled ? handleModeToggle : undefined}
+            tasks={keyData.tasks?.filter((t) => t.languageTag === language.tag)}
+            onTaskStateChange={setAssignedTaskState}
           />
           {editEnabled ? (
             <ControlsEditorMain
               onSave={handleSave}
               onCancel={() => handleClose(true)}
+              tasks={keyData.tasks?.filter(
+                (t) => t.languageTag === language.tag
+              )}
             />
           ) : (
             <ControlsEditorReadOnly onClose={() => handleClose(true)} />

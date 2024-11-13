@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { getTolgeeFormat } from '@tginternal/editor';
 
 import { TRANSLATION_STATES } from 'tg.constants/translationStates';
@@ -6,8 +6,8 @@ import { useProjectPermissions } from 'tg.hooks/useProjectPermissions';
 import { components } from 'tg.service/apiSchema.generated';
 
 import {
-  useTranslationsSelector,
   useTranslationsActions,
+  useTranslationsSelector,
 } from './context/TranslationsContext';
 import {
   AfterCommand,
@@ -17,6 +17,11 @@ import {
 import { useProject } from 'tg.hooks/useProject';
 
 type LanguageModel = components['schemas']['LanguageModel'];
+
+export type SaveProps = {
+  preventTaskResolution?: boolean;
+  after?: AfterCommand;
+};
 
 type Props = {
   keyData: DeletableKeyWithTranslationsModelType;
@@ -41,6 +46,7 @@ export const useTranslationCell = ({
     changeField,
     setEditForce,
     setTranslationState,
+    setTaskState,
     updateEdit,
   } = useTranslationsActions();
 
@@ -81,19 +87,30 @@ export const useTranslationCell = ({
     });
   };
 
-  const handleSave = (after?: AfterCommand) => {
+  const handleSave = ({ after, preventTaskResolution }: SaveProps) => {
     changeField({
       after,
+      preventTaskResolution,
       onSuccess: () => onSaveSuccess?.(value),
     });
   };
 
-  const handleInsertBase = () => {
-    if (!baseLanguage?.tag) {
-      return;
+  const getBaseText = () => {
+    if (!baseLanguage) {
+      return undefined;
     }
 
-    const baseText = keyData.translations[baseLanguage.tag].text;
+    return keyData.translations[baseLanguage.tag]?.text;
+  };
+
+  const baseText = getBaseText();
+
+  const handleInsertBase = () => {
+    const baseText = getBaseText();
+
+    if (!baseText) {
+      return;
+    }
 
     let baseVariant: string | undefined;
     if (cursor?.activeVariant) {
@@ -112,6 +129,14 @@ export const useTranslationCell = ({
     }
   };
 
+  const baseValue = useMemo(() => {
+    return getTolgeeFormat(
+      getBaseText() || '',
+      keyData.keyIsPlural,
+      !project.icuPlaceholders
+    );
+  }, [baseText, keyData.keyIsPlural]);
+
   const handleClose = (force = false) => {
     if (force) {
       setEditForce(undefined);
@@ -121,6 +146,18 @@ export const useTranslationCell = ({
   };
 
   const translation = langTag ? keyData?.translations[langTag] : undefined;
+
+  const firstTask = keyData.tasks?.find((t) => t.languageTag === language.tag);
+
+  const setAssignedTaskState = (done: boolean) => {
+    if (firstTask) {
+      setTaskState({
+        keyId: keyData.keyId,
+        taskNumber: firstTask.number,
+        done,
+      });
+    }
+  };
 
   const setState = () => {
     if (!translation) {
@@ -141,14 +178,15 @@ export const useTranslationCell = ({
     updateEdit({ activeVariant });
   }
 
-  const canChangeState = satisfiesLanguageAccess(
-    'translations.state-edit',
-    language.id
-  );
+  const canChangeState =
+    (firstTask?.userAssigned && firstTask.type === 'REVIEW') ||
+    satisfiesLanguageAccess('translations.state-edit', language.id);
 
   const disabled = translation?.state === 'DISABLED';
   const editEnabled =
-    satisfiesLanguageAccess('translations.edit', language.id) && !disabled;
+    ((firstTask?.userAssigned && firstTask.type === 'TRANSLATE') ||
+      satisfiesLanguageAccess('translations.edit', language.id)) &&
+    !disabled;
 
   return {
     keyId,
@@ -161,6 +199,7 @@ export const useTranslationCell = ({
     setEditValueString,
     setState,
     setVariant,
+    setAssignedTaskState,
     value,
     editVal: isEditing ? cursor : undefined,
     isEditing,
@@ -171,5 +210,7 @@ export const useTranslationCell = ({
     editEnabled,
     translation,
     disabled,
+    baseValue,
+    baseText,
   };
 };

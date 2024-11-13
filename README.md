@@ -2,7 +2,7 @@
     <b>
         <a href="https://tolgee.io">Tolgee</a><br>
     </b>
-    An open-source localization platform<br/> developers enjoy to work with
+    An open-source localization platform<br/> developers enjoy to working with
     <br>
 </h1>
 
@@ -10,7 +10,13 @@
 
 [![Logo](https://user-images.githubusercontent.com/18496315/188628892-33fcc282-26f1-4035-8105-95952bd93de9.svg)](https://tolgee.io)
 
-An open-source alternative to Crowdin, Phrase or Lokalise
+An open-source alternative to Crowdin, Phrase, or Lokalise
+
+<h2 align="center" style="border-bottom: none">
+
+[**Français**](Readme/README.fr.md)
+
+</h2>
 
 ![example workflow](https://github.com/tolgee/tolgee-platform/actions/workflows/test.yml/badge.svg)
 ![kotlin](https://img.shields.io/github/languages/top/tolgee/tolgee-platform)
@@ -28,23 +34,16 @@ An open-source alternative to Crowdin, Phrase or Lokalise
 [<img src="https://img.shields.io/badge/-Facebook-424549?style=social&logo=facebook" height=25 />](https://www.facebook.com/Tolgee.i18n)
 [<img src="https://img.shields.io/badge/-Twitter-424549?style=social&logo=twitter" height=25 />](https://twitter.com/Tolgee_i18n)
 [<img src="https://img.shields.io/badge/-Linkedin-424549?style=social&logo=linkedin" height=25 />](https://www.linkedin.com/company/tolgee)
-
-
-
-**Become part of the family. Join [slack channel <img src="https://img.shields.io/badge/-Tolgee Comunity-424549?style=social&logo=slack" height=25 />](https://join.slack.com/t/tolgeecommunity/shared_invite/zt-195isb5u8-_RcSRgVJfvgsPpOBIok~IQ)**
-
 </div>
-
-
-![Tolgee](https://user-images.githubusercontent.com/18496315/188632536-3547fd70-755c-4a32-9b1e-fb1afbf84b33.png)
 
 ## Quick links
 - [Tolgee Website](https://tolgee.io)
+
   - Product (Learn more about the great features)
     - [Dev tools](https://tolgee.io/features/dev-tools)
     - [Translation assistance](https://tolgee.io/features/translation-assistance)
     - [Collaboration](https://tolgee.io/features/collaboration)
-- Integrations (Learn how to integrate Tolgee with you favourite technology)
+- Integrations (Learn how to integrate Tolgee with your favourite technology)
   - [React](https://tolgee.io/integrations/react)
   - [Angular](https://tolgee.io/integrations/angular)
   - [Vue](https://tolgee.io/integrations/vue)
@@ -53,11 +52,11 @@ An open-source alternative to Crowdin, Phrase or Lokalise
   - [More...](https://tolgee.io/integrations/all)
 - [Tolgee platform docs](https://tolgee.io/docs/platform)
   - [Self-hosting](https://tolgee.io/docs/platform/self_hosting/running_with_docker)
-- [Development notes (How to develop Tolgee locally)](https://github.com/tolgee/tolgee-platform/wiki/Development)
+- [How to develop Tolgee locally](DEVELOPMENT.md)
 
-## Why to use Tolgee?
+## Why use Tolgee?
 
-Beacause it saves a lot of time you would spend on localization tasks without it. Because it enables you to provide perfectly translated software. 
+Because it saves a lot of time you would spend on localization tasks without it. Because it enables you to provide perfectly translated software. 
 
 ![Frame 47](https://user-images.githubusercontent.com/18496315/188637819-ac4eb02d-7859-4ca8-9807-27818a52782d.png)
 
@@ -65,7 +64,7 @@ Beacause it saves a lot of time you would spend on localization tasks without it
 
 Add translations in the code, and translate them directly in the app with the Tolgee i18n tool. Clicking an element while holding the ALT/option key opens a dialog where you can simply modify your strings. No need to edit large .json/.po/.whatever file. In-context translating works great also in the production environment.
 
-Once. That's how many times you have to click to take a screenshot from your application with highlighted phrases to translate. Just ALT + click a string and hit the camera button. Boom! Screenshot generated.
+Once. That's how many times you have to click to take a screenshot from your application with highlighted phrases to translate. Just ALT + click a string and hit the camera button. Boom! Screenshot is generated.
 
 ![Sep-06-2022 16-38-49](https://user-images.githubusercontent.com/18496315/188672133-064d2a26-e414-4f5e-ab43-549af8cb2145.gif)
 
@@ -93,11 +92,11 @@ When enabled, Tolgee automatically translates new keys using translation memory 
 
 ### Activity log
 
-See who modified, reviewed or commented on the phrases in your project. Clearly.
+See who modified, reviewed, or commented on the phrases in your project. Clearly.
 
 ### Comment on translations
 
-Something look off? Tell others what you would change. You can comment every translation on Tolgee platform.
+Does something look off? Tell others what you would change. You can comment on every translation on Tolgee platform.
 
 ### Translation history
 
@@ -109,10 +108,14 @@ For more detailed documentation about Tolgee, visit [tolgee.io](https://tolgee.i
 
 1. Sign up at [app.tolgee.io](https://app.tolgee.io/sign_up) or access your self-hosted instance
 2. Create a project
-3. Follow a guide in integration section of your project
+3. Follow a guide in the integration section of your project
 4. Have fun!
 
 ![Integration guides](https://user-images.githubusercontent.com/18496315/188818166-d70d4676-7bd2-4328-91eb-720add935ab6.gif)
+
+## How to contribute
+
+You wanna contribute? Great to hear that! You can start [right away](CONTRIBUTING.md)!
 
 ## Contributors
 
@@ -120,4 +123,4 @@ For more detailed documentation about Tolgee, visit [tolgee.io](https://tolgee.i
   <img alt="contributors" src="https://contrib.rocks/image?repo=tolgee/tolgee-platform"/>
 </a>
 
-Let us know what you think! #feedbackwanted ❤️
+Let us know what you think! #FeedbackWanted ❤️
