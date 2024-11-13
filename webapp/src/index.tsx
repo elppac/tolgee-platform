@@ -48,13 +48,9 @@ const tolgee = Tolgee()
     apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
     tagNewKeys: [`draft: ${getFeatureName(branchName)}`],
     staticData: {
+      zh: () => import('./i18n/zh.json').then((m) => m.default),
       en: () => import('./i18n/en.json').then((m) => m.default),
-      es: () => import('./i18n/es.json').then((m) => m.default),
-      cs: () => import('./i18n/cs.json').then((m) => m.default),
-      fr: () => import('./i18n/fr.json').then((m) => m.default),
-      de: () => import('./i18n/de.json').then((m) => m.default),
-      pt: () => import('./i18n/pt.json').then((m) => m.default),
-      da: () => import('./i18n/da.json').then((m) => m.default),
+      zhTw: () => import('./i18n/zh-Hans.json').then((m) => m.default),
     },
   });
 

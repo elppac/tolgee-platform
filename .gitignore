@@ -24,7 +24,7 @@ e2e/cypress/integration/examples/
 .gradle
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+/tolgee-data
 # dependencies
 /webapp/node_modules
 /webapp/.pnp
